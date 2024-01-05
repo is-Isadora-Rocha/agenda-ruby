@@ -14,8 +14,8 @@ def todos_contatos
     #PEGA CADA contato que está dentro de @AGENDA, e imprima
     @agenda.each do |contato|
         puts "#{contato[:nome]} - #{contato[:telefone]}"
-        puts "\n"
     end
+    puts "----------------------------"
 end
 
 loop do
