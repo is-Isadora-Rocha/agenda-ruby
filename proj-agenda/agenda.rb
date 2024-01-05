@@ -42,12 +42,12 @@ def ver_contato
 end
 
 def editar_contato
-  print "Qual nome deseja editar: "
+  print "Qual contato deseja editar: "
   nome = gets.chomp
 
   @agenda.each do |contato|
     if contato[:nome].downcase.include?(nome.downcase)
-      print "Nome para editar (Se quiser manter o mesmo nome, pressione Enter): "
+      print "Contato para editar (Se quiser manter o mesmo nome, pressione Enter): "
       nome_salvo = contato[:nome]
 
       contato[:nome] = gets.chomp
@@ -59,6 +59,19 @@ def editar_contato
       contato[:telefone] = gets.chomp
       contato[:telefone] = contato[:telefone].empty? ? telefone_salvo : contato[:telefone]
     end 
+  end 
+end
+
+def remover_contato
+  print "Qual contato deseja remover? "
+  nome = gets.chomp
+
+  @agenda.each do |contato|
+    if contato[:nome].downcase == (nome.downcase)
+      indice = @agenda.index(contato) #posicao do contato no array
+      @agenda.delete_at(indice)
+      break
+    end
   end 
 end
 
@@ -77,5 +90,7 @@ loop do
     ver_contato
   elsif codigo == 4
     editar_contato
+  elsif codigo == 5
+    remover_contato
   end
 end
