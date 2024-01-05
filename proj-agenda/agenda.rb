@@ -41,6 +41,27 @@ def ver_contato
   puts '----------------------------'
 end
 
+def editar_contato
+  print "Qual nome deseja editar: "
+  nome = gets.chomp
+
+  @agenda.each do |contato|
+    if contato[:nome].downcase.include?(nome.downcase)
+      print "Nome para editar (Se quiser manter o mesmo nome, pressione Enter): "
+      nome_salvo = contato[:nome]
+
+      contato[:nome] = gets.chomp
+      contato[:nome] = contato[:nome].empty? ? nome_salvo : contato[:nome]
+
+      print "Telefone para editar (Se quiser manter o mesmo telefone, pressione Enter): "
+      telefone_salvo = contato[:nome]
+
+      contato[:telefone] = gets.chomp
+      contato[:telefone] = contato[:telefone].empty? ? telefone_salvo : contato[:telefone]
+    end 
+  end 
+end
+
 loop do
   puts "1. Contatos\n2. Adicionar Contato\n3. Ver Contato\n4. Editar Contato\n5. Remover Contato\n0. Sair"
   codigo = gets.chomp.to_i
@@ -54,5 +75,7 @@ loop do
     adicionar_contato
   elsif codigo == 3
     ver_contato
+  elsif codigo == 4
+    editar_contato
   end
 end
